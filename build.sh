@@ -21,7 +21,7 @@ cd $workdir/src/notes/vendor
 luacc init -p 5 -o $workdir/dist/vendor.lua -i . $(for i in **/*.lua; do echo $i; done | sed 'y/\//./;s/^src.vendor.//;s/\.lua$//' | awk '{ if ($1 != "init") { print } }')
 
 # patch redrun function
-sed -i 's|\["redrun"\] = function()|["redrun"] = function(...)|g' $workdir/dist/vendor.lua
+# sed -i 's|\["redrun"\] = function()|["redrun"] = function(...)|g' $workdir/dist/vendor.lua
 
 cd $workdir
 
@@ -39,10 +39,3 @@ cat dist/release/tail.vendor.min.lua >> dist/release/vendor.min.lua
 
 echo 'cleaning up...'
 rm dist/release/tail.notes.min.lua dist/release/tail.vendor.min.lua
-
-# echo 'publishing to computer #0...'
-# cp dist/notes.lua /home/codespace/.local/share/craftos-pc/computer/0/notes/init.lua
-# cp dist/vendor.lua /home/codespace/.local/share/craftos-pc/computer/0/notes/vendor.lua
-
-# echo 'tarring...'
-# tar -cf src.tar src
